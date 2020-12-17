@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <style media="screen">
+      .container{
+        width: 100%;
+        height: 100%;
+      }
+      .container img{
+        width: 150px;
+        height: 100px;
+      }
+      span{
+        display: block;
+        width: 100%;
+        height: 100px;
+      }
+    </style>
+
+    <script src="https://cdn.staticfile.org/angular.js/1.4.6/angular.min.js"></script>
+
+  </head>
+  <body ng-app="myApp">
+    <!-- <div data-ng-app="" data-ng-init="names=[
+    {
+      url:'./1.jpg'
+    },
+    {
+      url:'./1.jpg'
+    }
+    ,
+    {
+      url:'./1.jpg'
+    }
+    ,
+    {
+      url:'./1.jpg'
+    }
+    ,
+    {
+      url:'./1.jpg'
+    }]"
+    >
+    <span></span>
+    <img data-ng-repeat="x in names" ng-src={{x.url}} alt="">
+  </div> -->
+
+
+  <!-- <div class="" data-ng-app="myApp" data-ng-controller="pCtrl">
+    <button data-ng-click="toggle()">显示与隐藏的切换</button>
+
+    <p data-ng-hide="isShow">
+      姓名:<input type="text" data-ng-model="pName">
+    </p>
+  </div>
+
+  <script type="text/javascript">
+    var app=angular.module('myApp',[]);
+    app.controller('pCtrl',function($scope){
+      $scope.pName = "皮皮虾";
+      $scope.isShow = false;
+      $scope.toggle = function(){
+        $scope.isShow = !$scope.isShow;
+      };
+    });
+  </script> -->
+
+  <!-- 使用自定义指令 -->
+  <!-- <moximoxi></moximoxi>
+
+  <div class="moximoxi">
+
+  </div>
+
+  <div class="" moximoxi>
+
+  </div> -->
+
+  <!-- directive:moximoxi -->
+  <!-- <p><strong>注意：</strong> 我们需要在该实例添加 <strong>replace</strong> 属性， 否则评论是不可见的。</p>
+  <p><strong>注意：</strong> 你必须设置 <b>restrict</b> 的值为 "M" 才能通过注释来调用指令。</p> -->
+
+
+  <!-- 创建自定义指令  $scope 不能要-->
+  <!-- <script type="text/javascript">
+  var app=angular.module('myApp',[]);
+  app.directive("moximoxi",function(){
+    return {
+      restrict : "EACM",
+      replace : true,
+      template:"<h1>创建自定义指令</h1>"
+    };
+  });
+  </script> -->
+
+
+
+  <!-- <div class="" ng-init="names=[1,2,3,4,5,5]">
+    <p>循环对象:</p>
+    <ul>
+    <li ng-repeat="x in names track by $index">
+    {{ x }}</li>
+    </ul>
+
+  </div>
+
+  <script type="text/javascript">
+    var app=angular.module('myApp',[]);
+
+  </script> -->
+
+
+
+
+  </body>
+
+
+
+</html>
