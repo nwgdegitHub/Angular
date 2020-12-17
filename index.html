@@ -23,7 +23,11 @@
 
   </head>
   <body ng-app="myApp">
-    <!-- <div data-ng-app="" data-ng-init="names=[
+    <div class="">
+      <a href="https://www.runoob.com/angularjs/angularjs-model.html">来自菜鸟教程</a>
+    </div>
+
+    <div data-ng-app="" data-ng-init="names=[
     {
       url:'./1.jpg'
     },
@@ -34,21 +38,29 @@
     {
       url:'./1.jpg'
     }
-    ,
-    {
-      url:'./1.jpg'
-    }
-    ,
-    {
-      url:'./1.jpg'
-    }]"
+    ]"
     >
-    <span></span>
+    <h1 data-ng-repeat="x in names">{{x}}</h1>
     <img data-ng-repeat="x in names" ng-src={{x.url}} alt="">
-  </div> -->
+  </div>
+
+  <!-- 常用指令
+  ng-app  指令初始化一个 AngularJS 应用程序
+  ng-init 指令初始化应用程序数据
+  ng-model 指令把元素值（比如输入域的值）绑定到应用程序
+  ng-controller 指令定义了应用程序控制器
+  ng-click
+  ng-hide
+  ng-repeat
+    -->
+  <div class="" ng-init="firstName='John'">
+    <p>姓名：<input type="text" name="" value="" ng-model="firstName"></p>
+    <p>你输入的为：{{firstName}}</p>
+  </div>
 
 
-  <!-- <div class="" data-ng-app="myApp" data-ng-controller="pCtrl">
+  <!-- 这里有个疑问，ng-controller之后再写ng-repeat就无效了 :已解决 JS 全部写到最后面 因为html的执行顺序是从前往后--->
+  <div data-ng-controller="pCtrl">
     <button data-ng-click="toggle()">显示与隐藏的切换</button>
 
     <p data-ng-hide="isShow">
@@ -56,66 +68,61 @@
     </p>
   </div>
 
-  <script type="text/javascript">
-    var app=angular.module('myApp',[]);
-    app.controller('pCtrl',function($scope){
-      $scope.pName = "皮皮虾";
-      $scope.isShow = false;
-      $scope.toggle = function(){
-        $scope.isShow = !$scope.isShow;
-      };
-    });
-  </script> -->
 
-  <!-- 使用自定义指令 -->
-  <!-- <moximoxi></moximoxi>
+  <!-- 这里有个疑问，ng-controller之后再写ng-repeat就无效了 :已解决 JS 全部写到最后面 因为html的执行顺序是从前往后-->
+      <div>
 
-  <div class="moximoxi">
+        <h1 data-ng-repeat="x in [1,2,3]">{{x}}</h1>
+        <ul><li ng-repeat="x in ['宝马','奔驰','奥迪'] track by $index">{{ x }}</li>
+        </ul>
 
-  </div>
-
-  <div class="" moximoxi>
-
-  </div> -->
-
-  <!-- directive:moximoxi -->
-  <!-- <p><strong>注意：</strong> 我们需要在该实例添加 <strong>replace</strong> 属性， 否则评论是不可见的。</p>
-  <p><strong>注意：</strong> 你必须设置 <b>restrict</b> 的值为 "M" 才能通过注释来调用指令。</p> -->
+      </div>
 
 
-  <!-- 创建自定义指令  $scope 不能要-->
-  <!-- <script type="text/javascript">
-  var app=angular.module('myApp',[]);
-  app.directive("moximoxi",function(){
-    return {
-      restrict : "EACM",
-      replace : true,
-      template:"<h1>创建自定义指令</h1>"
-    };
-  });
-  </script> -->
+<!-- 通过添加 restrict 属性,并设置值
+为 "E", 来设置指令只能通过元素名的方式来调用
+为 "A", 来设置指令只能通过属性的方式来调用
+为 "C", 来设置指令只能通过类名的方式来调用
+为 "M", 来设置指令只能通过注释的方式来调用
+ -->
+  <p><strong>注意：</strong> 我们需要在该实例添加 <strong>replace</strong> 属性， 否则评论是不可见的。</p>
+  <p><strong>注意：</strong> 你必须设置 <b>restrict</b> 的值为 "M" 才能通过注释来调用指令。</p>
 
 
+    <!-- 使用 .directive 函数来添加自定义的指令
+      可以通过 元素名，属性，类名，注释 来调用指令
+    -->
+    <moximoxi></moximoxi>
+    <div class="moximoxi"></div>
+    <div class="" moximoxi></div>
+    <!-- directive:moximoxi -->
 
-  <!-- <div class="" ng-init="names=[1,2,3,4,5,5]">
-    <p>循环对象:</p>
-    <ul>
-    <li ng-repeat="x in names track by $index">
-    {{ x }}</li>
-    </ul>
+    <!-- 创建自定义指令  $scope 不能要-->
+    <script type="text/javascript">
+      var app=angular.module('myApp',[]);
+      app.directive("moximoxi",function(){
+        return {
+          restrict : "EACM",
+          replace : true,
+          template:"<h1>创建自定义指令</h1>"
+        };
+      });
+    </script>
 
-  </div>
 
-  <script type="text/javascript">
-    var app=angular.module('myApp',[]);
-
-  </script> -->
-
+      <script type="text/javascript">
+        var app=angular.module('myApp',[]);
+        app.controller('pCtrl',function($scope){
+          $scope.pName = "皮皮虾";
+          $scope.isShow = false;
+          $scope.toggle = function(){
+            $scope.isShow = !$scope.isShow;
+          };
+        });
+      </script>
 
 
 
   </body>
-
-
 
 </html>
