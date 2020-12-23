@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <script src="https://cdn.staticfile.org/angular.js/1.6.6/angular.min.js"></script>
+
+  </head>
+  <body>
+  <div ng-app="myApp">
+
+      <h1>{{lastname}}</h1>
+
+      <ul ng-controller="myCtrl">
+          <li ng-repeat="x in names">{{x}} {{lastname}}</li>
+      </ul>
+
+      <div  ng-controller="myCtrl2">
+          {{lastname}}; // 可以访问
+          {{names}} // 不可以访问
+      </div>
+
+
+  </div>
+
+  <div ng-app="app2" ng-controller="appCtrl">
+      {{lastname}} //错误 不可以访问
+  </div>
+
+  <script>
+      var app = angular.module('myApp', []);
+
+      app.controller('myCtrl', function($scope, $rootScope) {
+          $scope.names = ["Emil", "Tobias", "Linus"];
+          $rootScope.lastname = "Refsnes";
+      });
+      app.controller('myCtrl2',function($scope){
+
+      });
+
+      var app2 = angular.module('myApp2', []);
+
+      app2.controller('appCtrl',function($scope){
+
+      });
+  </script>
+
+
+  </body>
+</html>

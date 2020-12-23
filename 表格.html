@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <script src="https://cdn.staticfile.org/angular.js/1.6.6/angular.min.js"></script>
+    <style media="screen">
+      table, th , td  {
+      border: 1px solid grey;
+      border-collapse: collapse;
+      padding: 5px;
+      }
+      table tr:nth-child(odd) {
+      background-color: #f1f1f1;
+      }
+      table tr:nth-child(even) {
+      background-color: #ffffff;
+      }
+    </style>
+  </head>
+  <body ng-app="myApp" ng-controller="customersCtrl">
+    <table>
+      <tr ng-repeat="x in names">
+        <td>{{x.Name}}</td>
+        <td>{{x.Country}}</td>
+      </tr>
+    </table>
+
+    <script type="text/javascript">
+      var app=angular.module('myApp',[]);
+      app.controller('customersCtrl',function($scope, $http){
+        //TODO:为何从本地加载不了?
+        // $http.get("/table.json")
+        // .then(
+        //   function(response){
+        //     $scope.names = response.records;
+        //   }
+        // )
+
+$scope.names = [ {"Name":"Alfreds Futterkiste","City":"Berlin","Country":"Germany"}, {"Name":"Ana Trujillo Emparedados y helados","City":"México D.F.","Country":"Mexico"}, {"Name":"Antonio Moreno Taquería","City":"México D.F.","Country":"Mexico"}, {"Name":"Around the Horn","City":"London","Country":"UK"}, {"Name":"B's Beverages","City":"London","Country":"UK"}, {"Name":"Berglunds snabbköp","City":"Luleå","Country":"Sweden"}, {"Name":"Blauer See Delikatessen","City":"Mannheim","Country":"Germany"}, {"Name":"Blondel père et fils","City":"Strasbourg","Country":"France"}, {"Name":"Bólido Comidas preparadas","City":"Madrid","Country":"Spain"}, {"Name":"Bon app'","City":"Marseille","Country":"France"}, {"Name":"Bottom-Dollar Marketse","City":"Tsawassen","Country":"Canada"}, {"Name":"Cactus Comidas para llevar","City":"Buenos Aires","Country":"Argentina"}, {"Name":"Centro comercial Moctezuma","City":"México D.F.","Country":"Mexico"}, {"Name":"Chop-suey Chinese","City":"Bern","Country":"Switzerland"}, {"Name":"Comércio Mineiro","City":"São Paulo","Country":"Brazil"} ];
+
+      });
+    </script>
+  </body>
+</html>

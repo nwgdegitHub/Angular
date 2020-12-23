@@ -19,7 +19,7 @@
       }
     </style>
 
-    <script src="https://cdn.staticfile.org/angular.js/1.4.6/angular.min.js"></script>
+    <script src="https://cdn.staticfile.org/angular.js/1.6.6/angular.min.js"></script>
 
   </head>
   <body ng-app="myApp">
@@ -28,30 +28,30 @@
     </div>
 
     <div data-ng-app="" data-ng-init="names=[
-    {
-      url:'./1.jpg'
-    },
-    {
-      url:'./1.jpg'
-    }
-    ,
-    {
-      url:'./1.jpg'
-    }
-    ]"
-    >
-    <h1 data-ng-repeat="x in names">{{x}}</h1>
-    <img data-ng-repeat="x in names" ng-src={{x.url}} alt="">
-  </div>
+      {
+        url:'./1.jpg'
+      },
+      {
+        url:'./1.jpg'
+      }
+      ,
+      {
+        url:'./1.jpg'
+      }
+      ]"
+      >
+      <h1 data-ng-repeat="x in names">{{x}}</h1>
+      <img data-ng-repeat="x in names" ng-src={{x.url}} alt="">
+    </div>
 
   <!-- 常用指令
-  ng-app  指令初始化一个 AngularJS 应用程序
-  ng-init 指令初始化应用程序数据
-  ng-model 指令把元素值（比如输入域的值）绑定到应用程序
-  ng-controller 指令定义了应用程序控制器
-  ng-click
-  ng-hide
-  ng-repeat
+    ng-app  指令初始化一个 AngularJS 应用程序
+    ng-init 指令初始化应用程序数据
+    ng-model 指令把元素值（比如输入域的值）绑定到应用程序
+    ng-controller 指令定义了应用程序控制器
+    ng-click
+    ng-hide
+    ng-repeat
     -->
   <div class="" ng-init="firstName='John'">
     <p>姓名：<input type="text" name="" value="" ng-model="firstName"></p>
@@ -60,16 +60,23 @@
 
 
   <!-- 这里有个疑问，ng-controller之后再写ng-repeat就无效了 :已解决 JS 全部写到最后面 因为html的执行顺序是从前往后--->
-  <div data-ng-controller="pCtrl">
+  <div ng-controller="haha1">
     <button data-ng-click="toggle()">显示与隐藏的切换</button>
 
     <p data-ng-hide="isShow">
       姓名:<input type="text" data-ng-model="pName">
     </p>
+    <h1>这里是pCtrl控制器</h1>
+    {{age2}} //没显示
+
   </div>
 
+  <div ng-controller="haha2">
+    <h1>这里是pCtrl2控制器</h1>
+    {{age2}} //显示{{age2}}
+  </div>
 
-  <!-- 这里有个疑问，ng-controller之后再写ng-repeat就无效了 :已解决 JS 全部写到最后面 因为html的执行顺序是从前往后-->
+      <!-- 这里有个疑问，ng-controller之后再写ng-repeat就无效了 :已解决 JS 全部写到最后面 因为html的执行顺序是从前往后-->
       <div>
 
         <h1 data-ng-repeat="x in [1,2,3]">{{x}}</h1>
@@ -78,15 +85,14 @@
 
       </div>
 
-
-<!-- 通过添加 restrict 属性,并设置值
-为 "E", 来设置指令只能通过元素名的方式来调用
-为 "A", 来设置指令只能通过属性的方式来调用
-为 "C", 来设置指令只能通过类名的方式来调用
-为 "M", 来设置指令只能通过注释的方式来调用
- -->
-  <p><strong>注意：</strong> 我们需要在该实例添加 <strong>replace</strong> 属性， 否则评论是不可见的。</p>
-  <p><strong>注意：</strong> 你必须设置 <b>restrict</b> 的值为 "M" 才能通过注释来调用指令。</p>
+  <!-- 通过添加 restrict 属性,并设置值
+  为 "E", 来设置指令只能通过元素名的方式来调用
+  为 "A", 来设置指令只能通过属性的方式来调用
+  为 "C", 来设置指令只能通过类名的方式来调用
+  为 "M", 来设置指令只能通过注释的方式来调用
+   -->
+    <p><strong>注意：</strong> 我们需要在该实例添加 <strong>replace</strong> 属性， 否则评论是不可见的。</p>
+    <p><strong>注意：</strong> 你必须设置 <b>restrict</b> 的值为 "M" 才能通过注释来调用指令。</p>
 
 
     <!-- 使用 .directive 函数来添加自定义的指令
@@ -96,6 +102,25 @@
     <div class="moximoxi"></div>
     <div class="" moximoxi></div>
     <!-- directive:moximoxi -->
+
+    <!-- ng-disabled  -->
+    <div ng-init="mySwitch=true">
+      <p>
+        <button ng-disabled="mySwitch">点我</button>
+      </p>
+
+      <p>
+        <input type="checkbox" name="" value="" ng-model="mySwitch">按钮
+      </p>
+      {{mySwitch}}
+    </div>
+
+    <div class="" ng-init="hour=13">
+      <h1 ng-show="hour > 12">我是可见的。</h1>
+      <h2 ng-hide="true">我是不可见的。</h2>
+    </div>
+
+
 
     <!-- 创建自定义指令  $scope 不能要-->
     <script type="text/javascript">
@@ -109,19 +134,24 @@
       });
     </script>
 
-
-      <script type="text/javascript">
+    <script type="text/javascript">
         var app=angular.module('myApp',[]);
-        app.controller('pCtrl',function($scope){
+
+        // $rootScope 不使用的时候也不会报错 这个和Vue.js有区别
+        app.controller('haha1',function($scope,$rootScope){
           $scope.pName = "皮皮虾";
           $scope.isShow = false;
           $scope.toggle = function(){
             $scope.isShow = !$scope.isShow;
           };
+          $rootScope.age2 = 100;
+        });
+
+        app.controller('haha2',function($scope){
+          //要想在全局都能用$rootScope.age 必须写这个 虽然里面是空的
+          //注意$rootScope 格式
         });
       </script>
-
-
 
   </body>
 

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>嘻嘻</title>
+    <script src="https://cdn.staticfile.org/angular.js/1.6.6/angular.min.js"></script>
+  </head>
+  <body ng-app="myApp">
+    <div >{{age}}</div>
+    <h1 ng-controller="abcd1">{{age}}</h1>
+
+
+    <div ng-controller="abcd2">
+      {{age}}
+    </div>
+
+    <script type="text/javascript">
+      var app=angular.module('myApp',[]);
+      app.controller('abcd1',function($scope,$rootScope){
+       $rootScope.age = "100";
+
+      });
+      app.controller('abcd2',function($scope){
+        //要想在全局都能用$rootScope.age 必须写这个 虽然里面是空的
+        //注意$rootScope 格式
+      });
+    </script>
+
+  </body>
+</html>

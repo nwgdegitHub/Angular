@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <script src="https://cdn.staticfile.org/angular.js/1.6.9/angular.min.js"></script>
+  </head>
+
+  <!--
+  $location 返回当前页面的 URL 地址
+  $http 可自己二次封装
+  $timeout 可用于设置单次或多次延时服务;
+  $interval 可用于设置始终运行的延时服务。
+  $watch 持续监听数据上的变化，更新界面
+-->
+  <body ng-app="myApp">
+    <div class="" ng-controller="customersCtrl">
+      <h1>{{sum}}</h1>
+      <h4>现在是:{{now_date}}</h4>
+    </div>
+
+    <script type="text/javascript">
+      var app=angular.module('myApp',[]);
+      app.controller('customersCtrl',function($scope,$location){
+        //要想在全局都能用$rootScope.age 必须写这个 虽然里面是空的
+        //注意$rootScope 格式
+        console.log($location.absUrl());//file:///Users/udc/Desktop/Angular-learning/%E6%9C%8D%E5%8A%A1.html
+
+      });
+      // 创建自定义服务 链接到app模块
+      app.service('customService',function(){
+        this.myFunc = function (x,y) {
+          return (x+y);
+        }
+      });
+
+      app.controller('customersCtrl',function($scope,customService){
+        console.console.log('123');
+        $scope.sum=customService.myFunc(1,2);
+      });
+
+      // controller 再写一次会覆盖调前一个 也就是说前一个里面的代码不会执行
+      // 所以代码都要写到 一个app.controller（）中
+      app.controller('customersCtrl',function($scope,$interval){
+        $scope.now_date = new Date().toLocaleTimeString();
+        $interval(function () {
+            $scope.now_date = new Date().toLocaleTimeString();
+        }, 1000);
+      });
+
+
+
+
+
+
+    </script>
+
+    <!-- 创建重复模块会报错 -->
+    <!-- <script type="text/javascript">
+      var app=angular.module('myApp',[]);
+
+    </script> -->
+
+
+  </body>
+</html>
