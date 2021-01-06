@@ -17,6 +17,28 @@
         width: 100%;
         height: 100px;
       }
+      .sky {
+          color:white;
+          background-color:lightblue;
+          padding:20px;
+          font-family:"Courier New";
+      }
+      .tomato {
+          background-color:coral;
+          padding:40px;
+          font-family:Verdana;
+      }
+
+      .noabc{
+        width: 100px;
+        height: 100px;
+        background-color: red;
+      }
+      .abc{
+        width: 500px;
+        height: 500px;
+        background-color: skyblue;
+      }
     </style>
 
     <script src="https://cdn.staticfile.org/angular.js/1.6.6/angular.min.js"></script>
@@ -27,7 +49,8 @@
       <a href="https://www.runoob.com/angularjs/angularjs-model.html">来自菜鸟教程</a>
     </div>
 
-    <div data-ng-app="" data-ng-init="names=[
+    <div data-ng-app="" data-ng-init="names=
+    [
       {
         url:'./1.jpg'
       },
@@ -52,6 +75,7 @@
     ng-click
     ng-hide
     ng-repeat
+    ng-class 给 HTML 元素动态绑定一个或多个 CSS 类
     -->
   <div class="" ng-init="firstName='John'">
     <p>姓名：<input type="text" name="" value="" ng-model="firstName"></p>
@@ -120,6 +144,23 @@
       <h2 ng-hide="true">我是不可见的。</h2>
     </div>
 
+    <div class="">
+      <p>选择一个类:</p>
+
+      <select ng-model="home">
+        <option value="sky">天空色</option>
+        <option value="tomato">番茄色</option>
+      </select>
+
+      <div ng-class="home">
+        <h1>Welcome Home!</h1>
+        <p>I like it!</p>
+      </div>
+    </div>
+
+    <div class="noabc" ng-class="{true:'abc',false:''}[2==1.0]">
+      <span ng-class="">ng-class绑定一个对象</span>
+    </div>
 
 
     <!-- 创建自定义指令  $scope 不能要-->

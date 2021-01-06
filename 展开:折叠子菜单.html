@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <style media="screen">
+      *{
+        margin: 0;
+        padding: 0;
+      }
+      ul{
+        /* width: 200px;
+        height: 600px;
+        background-color: red; */
+      }
+    </style>
+    <script type="text/javascript" src="./lib/jquery-1.12.4.min.js" ></script>
+    <script src="https://cdn.staticfile.org/angular.js/1.6.6/angular.min.js"></script>
+  </head>
+  <body ng-app="myApp">
+    <div ng-controller="MyCtrl">
+      <ul>
+          <li ng-repeat="item in items" ng-click="showChilds($index)">
+              <span>{{item.name}}</span>
+              <ul>
+                  <li ng-repeat="subItem in item.subItems" ng-show="item.active" ng-click="clickChild($index)">
+                      <span>---{{subItem.name}}</span>
+                  </li>
+              </ul>
+          </li>
+      </ul>
+    </div>
+    <div class="right">
+      
+    </div>
+
+<script type="text/javascript">
+var app=angular.module('myApp',[]);
+app.controller('MyCtrl',function($scope){
+  $scope.currentIndex = 0;
+  $scope.showChilds = function(index){
+
+    if ($scope.currentIndex == index) {
+      $scope.items[index].active = true;
+    }
+    else{
+      $scope.items[index].active = !$scope.items[index].active;
+      collapseAnother(index);
+    }
+    $scope.currentIndex = index;
+
+
+
+  };
+
+  var collapseAnother = function(index){
+      for(var i=0; i<$scope.items.length; i++){
+          if(i!=index){
+              $scope.items[i].active = false;
+          }
+      }
+  };
+
+  $scope.clickChild = function(index){
+    console.log(index);
+  }
+
+  $scope.items = [
+    {
+         name: "Item1",
+         subItems: [
+             {name: "SubItem1"},
+             {name: "SubItem2"}
+         ]
+     },
+     {
+         name: "Item2",
+         subItems: [
+             {name: "SubItem3"},
+             {name: "SubItem4"},
+             {name: "SubItem5"}
+         ]
+     },
+     {
+         name: "Item3",
+         subItems: [
+             {name: "SubItem6"}
+         ]
+     }
+  ];
+
+});
+</script>
+  </body>
+</html>

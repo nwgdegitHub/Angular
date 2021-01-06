@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <style media="screen">
+      *{
+        margin: 0;
+        padding: 0;
+      }
+      .container{
+        display: flex;
+        justify-content: space-between;
+        width: 800px;
+        height: 800px;
+      }
+      .navi{
+        width: 200px;
+        height: 800px;
+        background-color: skyblue;
+      }
+      .content{
+        width: 500px;
+        background-color: yellow
+      }
+      .hasSon{
+        display: none;
+      }
+      .isHasSon{
+        display: block;
+      }
+      .hasSon li{
+        padding-left: 20px;
+      }
+
+    </style>
+    <script type="text/javascript" src="./lib/jquery-1.12.4.min.js" ></script>
+    <script src="https://cdn.staticfile.org/angular.js/1.6.6/angular.min.js"></script>
+  </head>
+  <body ng-app="myApp">
+    <div class="container" ng-controller="menu">
+      <div class="navi">
+        <!-- <ul class="main">
+          <li><a href="#" ng-click="change()" value="核桃">核桃</a></li>
+          <li><a href="#" value="水果">水果</a>
+            <ul class="hasSon" ng-class="{true:'isHasSon',false:''}['{{title}}'=='水果']">
+              <li><a href="#" value="苹果">苹果</a></li>
+              <li><a href="#" value="香蕉">香蕉</a></li>
+              <li><a href="#" value="菠萝">菠萝</a></li>
+            </ul>
+          </li>
+          <li><a href="#" value="花生米">花生米</a></li>
+        </ul> -->
+        <ul>
+          <li ng-repeat="item in items" ng-click="showChilds($index)">
+            <span>{{item.name}}</span>
+            <ul class="hasSon" ng-class="{true:'isHasSon',false:''}['{{title}}'=='水果']">
+              <li ng-repeat="subItem in item.subItems">
+                <span>{{subItem.name}}</span>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+      <div class="content">
+
+      </div>
+    </div>
+    <!-- <script type="text/javascript">
+      $("a").click(function(){
+        // console.log($(this))
+        // alert($(this).attr("value"))
+      });
+    </script> -->
+
+    <script type="text/javascript">
+      var app=angular.module('myApp',[]);
+      app.controller('menu',function($scope){
+
+        // console.log($scope);
+        $scope.title="水果";
+
+        // $("a").click(function(){
+        //   $scope.title=$(this).attr("value");
+        //
+        // });
+
+        $scope.showChilds=function($index){
+          console.log($scope.items[$index].name);
+          $scope.title=$scope.items[$index].name;
+
+        };
+
+        $scope.items=[
+          {
+            name:'核桃',
+          },
+          {
+            name:'水果',
+            subItems:[
+              {
+                name:'苹果',
+              },
+              {
+                name:'香蕉',
+              },
+              {
+                name:'菠萝',
+              }
+            ]
+          },
+          {
+            name:'花生米',
+          }
+        ];
+
+      });
+    </script>
+
+  </body>
+</html>
